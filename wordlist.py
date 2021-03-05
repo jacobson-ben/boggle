@@ -12,9 +12,8 @@ class WordList:
             >>> wl.words == {'CAT', 'DOG'}
             True
         """
-
         self.words = self._read_dict(dict_path)
-
+        
     def __repr__(self):
         return f"<WordList len={len(self.words)}>"
 
@@ -24,12 +23,17 @@ class WordList:
         dict_file = open(dict_path)
         words = {w.strip().upper() for w in dict_file}
         dict_file.close()
-        return words
+        return words #returns set of words {'HELLO', 'GOODBYE'}
 
     def check_word(self, word):
-        """Is word in word list?"""
+        """Is word in word list?
 
+            >>> word = WordList() 
+            >>> word.check_word("AAH")
+            True
+        """
         return word in self.words
 
 
 english_words = WordList("dictionary.txt")
+

@@ -13,17 +13,27 @@ games = {}
 @app.route("/")
 def homepage():
     """Show board."""
-
     return render_template("index.html")
 
 
 @app.route("/api/new-game")
 def new_game():
-    """Start a new game and return JSON: {game_id, board}."""
-
+    """Start a new game and return JSON: {game_id, board}.  """
     # get a unique id for the board we're creating
     game_id = str(uuid4())
     game = BoggleGame()
-    games[game_id] = game
+    games[game_id] = game 
 
-    return {"gameId": "need-real-id", "board": "need-real-board"}
+    return jsonify({"gameId": game_id, "board": game.board})
+
+@app.route('/api/<game_id>/score-word/', methods = ['POST'])
+def score_word():
+    word = request.json.get('word')
+    #check if word in word list
+    #check if word is on board
+
+    #get game id to check on word data
+    # games[game_id].is_word_in_word_list(word)
+        
+
+
