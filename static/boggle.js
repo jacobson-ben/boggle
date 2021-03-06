@@ -19,6 +19,22 @@ async function start() {
   displayBoard(board);
 }
 
+/** Score request */
+
+$("form").on('submit', scoreWord)
+
+async function scoreWord(evt) {
+    evt.preventDefault();
+    let word = $("#wordInput").val();
+    console.log(word, gameId)
+    let response = await axios.post("/api/score-word", {gameId, word})
+
+    const data = response.data
+    console.log(data)
+   
+}
+
+
 /** Display board */
 
 function displayBoard(board) {

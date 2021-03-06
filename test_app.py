@@ -38,5 +38,21 @@ class BoggleAppTestCase(TestCase):
             self.assertIn("board", data)
             self.assertIn(games['game_id'], games)
             # write a test for this route
+    
+
+    def test_score_word(self):
+        """Test scoring a word"""
+
+        with self.client as client:
+            response = client.get('/api/new-game')
+            gameId = response.json["gameId"]
+            word = response.json["word"]
+            
+            response = client.post('/api/score-word', json = {'game_id': gameId, 'word': "dog"})
+            json = response.json
+
+            self.assertEqual(json, {'result': 'ok'})
+            
+
 
 
